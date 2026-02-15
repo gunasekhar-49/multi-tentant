@@ -10,6 +10,7 @@ import { workflowEngine } from './services/workflow';
 import { PermissionsManager } from './components/PermissionsManager';
 import { ActivityTimeline } from './components/ActivityTimeline';
 import { CustomFieldsAdmin } from './components/CustomFieldsAdmin';
+import { SavedViewsManager } from './components/SavedViewsManager';
 
 // Layout Styles
 const AppContainer = styled.div`
@@ -208,7 +209,7 @@ const EmptyState = styled.div`
   }
 `;
 
-type Tab = 'dashboard' | 'leads' | 'contacts' | 'workflows' | 'permissions' | 'activity' | 'fields';
+type Tab = 'dashboard' | 'leads' | 'contacts' | 'workflows' | 'permissions' | 'activity' | 'fields' | 'views';
 
 const AppContent: React.FC = () => {
   const toast = useToast();
@@ -350,6 +351,7 @@ const AppContent: React.FC = () => {
           <NavBtn active={activeTab === 'permissions'} onClick={() => setActiveTab('permissions')}>🔒 Permissions</NavBtn>
           <NavBtn active={activeTab === 'activity'} onClick={() => setActiveTab('activity')}>📋 Activity</NavBtn>
           <NavBtn active={activeTab === 'fields'} onClick={() => setActiveTab('fields')}>⚙️ Fields</NavBtn>
+          <NavBtn active={activeTab === 'views'} onClick={() => setActiveTab('views')}>👁️ Saved Views</NavBtn>
           <StatusBadge online={isOnline}>
             {isOnline ? 'Online' : 'Offline'}
           </StatusBadge>
@@ -475,6 +477,7 @@ const AppContent: React.FC = () => {
         {activeTab === 'permissions' && <PermissionsManager />}
         {activeTab === 'activity' && <ActivityTimeline />}
         {activeTab === 'fields' && <CustomFieldsAdmin />}
+        {activeTab === 'views' && <SavedViewsManager />}
       </MainContent>
 
       <NotificationShell />
