@@ -3,7 +3,7 @@
  * Real-time badge + Intelligent productivity nudges
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ConnectionStatus } from '../../types/notifications';
 import { ActivityNudge } from '../../types/notifications';
@@ -255,6 +255,8 @@ const nudgeIcons = {
   sla_at_risk: '⚠️',
 };
 
+// Nudge message templates (available for future use)
+/*
 const nudgeMessages = {
   lead_untouched: (daysInactive: number) =>
     `This lead hasn't been touched in ${daysInactive} days. Time to follow up?`,
@@ -266,6 +268,7 @@ const nudgeMessages = {
   high_value_deal: () => 'High-value deal requiring attention.',
   sla_at_risk: () => 'SLA is at risk for this ticket.',
 };
+*/
 
 interface SingleNudgeProps {
   nudge: ActivityNudge;
@@ -400,8 +403,7 @@ export const createFollowUpDueNudge = (
 });
 
 export const createMeetingStartingNudge = (
-  meetingName: string,
-  meetingTime: Date
+  meetingName: string
 ): Omit<ActivityNudge, 'id'> => ({
   type: 'meeting_starting',
   title: 'Upcoming meeting',

@@ -3,7 +3,7 @@
  * Progress tracking for bulk imports/exports + @mention notifications
  */
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { BackgroundJob, Mention } from '../../types/notifications';
 import { notificationTokens } from "../../constants/notificationTokens";

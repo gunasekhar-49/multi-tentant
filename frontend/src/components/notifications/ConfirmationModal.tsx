@@ -125,7 +125,7 @@ const Content = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: ${notificationTokens.modal.gap};
+  gap: ${notificationTokens.spacing.md};
 `;
 
 const Section = styled.div`

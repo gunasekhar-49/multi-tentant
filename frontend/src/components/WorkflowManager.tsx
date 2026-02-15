@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { workflowEngine, WorkflowRule, WorkflowExecution } from '../../services/workflow';
+import { workflowEngine, WorkflowRule, WorkflowExecution } from '../services/workflow';
 
 const Container = styled.div`
   padding: 30px;

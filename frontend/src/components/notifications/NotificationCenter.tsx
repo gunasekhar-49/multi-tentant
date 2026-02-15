@@ -6,7 +6,7 @@
 
 import React, { useState, useMemo } from 'react';
 import styled from 'styled-components';
-import { Notification, NotificationCategory, NotificationPriority } from '../../types/notifications';
+import { Notification, NotificationCategory } from '../../types/notifications';
 import { notificationTokens } from "../../constants/notificationTokens";
 
 interface NotificationCenterProps {
