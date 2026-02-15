@@ -9,6 +9,7 @@ import { WorkflowManager } from './components/WorkflowManager';
 import { workflowEngine } from './services/workflow';
 import { PermissionsManager } from './components/PermissionsManager';
 import { ActivityTimeline } from './components/ActivityTimeline';
+import { CustomFieldsAdmin } from './components/CustomFieldsAdmin';
 
 // Layout Styles
 const AppContainer = styled.div`
@@ -207,7 +208,7 @@ const EmptyState = styled.div`
   }
 `;
 
-type Tab = 'dashboard' | 'leads' | 'contacts' | 'workflows' | 'permissions' | 'activity';
+type Tab = 'dashboard' | 'leads' | 'contacts' | 'workflows' | 'permissions' | 'activity' | 'fields';
 
 const AppContent: React.FC = () => {
   const toast = useToast();
@@ -348,6 +349,7 @@ const AppContent: React.FC = () => {
           <NavBtn active={activeTab === 'workflows'} onClick={() => setActiveTab('workflows')}>⚡ Workflows</NavBtn>
           <NavBtn active={activeTab === 'permissions'} onClick={() => setActiveTab('permissions')}>🔒 Permissions</NavBtn>
           <NavBtn active={activeTab === 'activity'} onClick={() => setActiveTab('activity')}>📋 Activity</NavBtn>
+          <NavBtn active={activeTab === 'fields'} onClick={() => setActiveTab('fields')}>⚙️ Fields</NavBtn>
           <StatusBadge online={isOnline}>
             {isOnline ? 'Online' : 'Offline'}
           </StatusBadge>
@@ -472,6 +474,7 @@ const AppContent: React.FC = () => {
         {activeTab === 'workflows' && <WorkflowManager />}
         {activeTab === 'permissions' && <PermissionsManager />}
         {activeTab === 'activity' && <ActivityTimeline />}
+        {activeTab === 'fields' && <CustomFieldsAdmin />}
       </MainContent>
 
       <NotificationShell />
