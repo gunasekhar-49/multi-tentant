@@ -5,6 +5,9 @@ import { NotificationShell } from './components/notifications/NotificationShell'
 import { DataGrid, Badge } from './components/DataGrid';
 import { useToast, useAlert } from './hooks/useNotifications';
 import { apiClient, Lead, Contact } from './services/api';
+import { WorkflowManager } from './components/WorkflowManager';
+import { workflowEngine } from './services/workflow';
+import { PermissionsManager } from './components/PermissionsManager';
 
 // Layout Styles
 const AppContainer = styled.div`
@@ -203,7 +206,7 @@ const EmptyState = styled.div`
   }
 `;
 
-type Tab = 'dashboard' | 'leads' | 'contacts';
+type Tab = 'dashboard' | 'leads' | 'contacts' | 'workflows' | 'permissions';
 
 const AppContent: React.FC = () => {
   const toast = useToast();
@@ -237,6 +240,19 @@ const AppContent: React.FC = () => {
       if (response.success && response.data) {
         setLeads(response.data);
         toast.success(`Loaded ${response.data.length} leads`, 'Success');
+        
+        // Trigger workflow for each new lead (simulate)
+        if (response.data.length > leads.length) {
+          const newLeads = response.data.slice(leads.length);
+          for (const lead of newLeads) {
+            await workflowEngine.executeTrigger('lead_created', {
+              recordId: lead.id,
+              recordType: 'lead',
+              data: lead,
+              userId: 'current-user'
+            });
+          }
+        }
       } else {
         throw new Error(response.message || 'Failed to load leads');
       }
@@ -328,6 +344,8 @@ const AppContent: React.FC = () => {
           <NavBtn active={activeTab === 'dashboard'} onClick={() => setActiveTab('dashboard')}>Dashboard</NavBtn>
           <NavBtn active={activeTab === 'leads'} onClick={() => setActiveTab('leads')}>Leads</NavBtn>
           <NavBtn active={activeTab === 'contacts'} onClick={() => setActiveTab('contacts')}>Contacts</NavBtn>
+          <NavBtn active={activeTab === 'workflows'} onClick={() => setActiveTab('workflows')}>⚡ Workflows</NavBtn>
+          <NavBtn active={activeTab === 'permissions'} onClick={() => setActiveTab('permissions')}>🔒 Permissions</NavBtn>
           <StatusBadge online={isOnline}>
             {isOnline ? 'Online' : 'Offline'}
           </StatusBadge>
@@ -448,6 +466,9 @@ const AppContent: React.FC = () => {
             </TableContainer>
           </>
         )}
+
+        {activeTab === 'workflows' && <WorkflowManager />}
+        {activeTab === 'permissions' && <PermissionsManager />}
       </MainContent>
 
       <NotificationShell />

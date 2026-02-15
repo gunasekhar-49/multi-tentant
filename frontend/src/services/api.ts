@@ -22,6 +22,8 @@ export interface Lead {
   value: number;
   createdAt: string;
   updatedAt: string;
+  ownerId?: string;
+  teamId?: string;
 }
 
 export interface Contact {
@@ -33,6 +35,8 @@ export interface Contact {
   title: string;
   createdAt: string;
   updatedAt: string;
+  ownerId?: string;
+  teamId?: string;
 }
 
 export interface Deal {

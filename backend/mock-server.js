@@ -38,11 +38,13 @@ app.get('/api/leads', (_req, res) => {
   res.json({
     success: true,
     data: [
-      { id: '1', name: 'Acme Corp', email: 'contact@acme.com', status: 'new', value: 50000 },
-      { id: '2', name: 'Tech Startup', email: 'info@techstartup.com', status: 'qualified', value: 75000 },
-      { id: '3', name: 'Enterprise Ltd', email: 'sales@enterprise.com', status: 'negotiating', value: 150000 }
+      { id: '1', name: 'Acme Corp', email: 'contact@acme.com', phone: '555-0001', company: 'Acme', status: 'new', value: 50000, createdAt: '2024-01-15', updatedAt: '2024-01-15', ownerId: 'user-1', teamId: 'team-1' },
+      { id: '2', name: 'Tech Startup', email: 'info@techstartup.com', phone: '555-0002', company: 'TechStart', status: 'qualified', value: 75000, createdAt: '2024-01-10', updatedAt: '2024-01-18', ownerId: 'user-1', teamId: 'team-1' },
+      { id: '3', name: 'Enterprise Ltd', email: 'sales@enterprise.com', phone: '555-0003', company: 'Enterprise', status: 'negotiating', value: 150000, createdAt: '2024-01-05', updatedAt: '2024-01-19', ownerId: 'user-2', teamId: 'team-1' },
+      { id: '4', name: 'Global Solutions', email: 'hello@globalsol.com', phone: '555-0004', company: 'Global', status: 'proposal', value: 120000, createdAt: '2024-01-12', updatedAt: '2024-01-17', ownerId: 'user-2', teamId: 'team-1' },
+      { id: '5', name: 'Innovation Labs', email: 'contact@innov.com', phone: '555-0005', company: 'InnoLab', status: 'won', value: 200000, createdAt: '2024-01-01', updatedAt: '2024-01-19', ownerId: 'user-3', teamId: 'team-1' }
     ],
-    total: 3
+    total: 5
   });
 });
 
@@ -78,10 +80,12 @@ app.get('/api/contacts', (_req, res) => {
   res.json({
     success: true,
     data: [
-      { id: '1', name: 'John Smith', email: 'john@example.com', phone: '+1-555-0100', title: 'CEO' },
-      { id: '2', name: 'Jane Doe', email: 'jane@example.com', phone: '+1-555-0101', title: 'CTO' }
+      { id: '1', name: 'John Smith', email: 'john@example.com', phone: '+1-555-0100', company: 'Acme Corp', title: 'CEO', createdAt: '2024-01-10', updatedAt: '2024-01-18', ownerId: 'user-1', teamId: 'team-1' },
+      { id: '2', name: 'Jane Doe', email: 'jane@example.com', phone: '+1-555-0101', company: 'Tech Startup', title: 'CTO', createdAt: '2024-01-12', updatedAt: '2024-01-19', ownerId: 'user-1', teamId: 'team-1' },
+      { id: '3', name: 'Bob Wilson', email: 'bob@example.com', phone: '+1-555-0102', company: 'Enterprise Ltd', title: 'CFO', createdAt: '2024-01-08', updatedAt: '2024-01-17', ownerId: 'user-2', teamId: 'team-1' },
+      { id: '4', name: 'Alice Johnson', email: 'alice@example.com', phone: '+1-555-0103', company: 'Global Solutions', title: 'VP Sales', createdAt: '2024-01-14', updatedAt: '2024-01-19', ownerId: 'user-3', teamId: 'team-1' }
     ],
-    total: 2
+    total: 4
   });
 });
 
