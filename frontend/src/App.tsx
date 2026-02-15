@@ -8,6 +8,7 @@ import { apiClient, Lead, Contact } from './services/api';
 import { WorkflowManager } from './components/WorkflowManager';
 import { workflowEngine } from './services/workflow';
 import { PermissionsManager } from './components/PermissionsManager';
+import { ActivityTimeline } from './components/ActivityTimeline';
 
 // Layout Styles
 const AppContainer = styled.div`
@@ -206,7 +207,7 @@ const EmptyState = styled.div`
   }
 `;
 
-type Tab = 'dashboard' | 'leads' | 'contacts' | 'workflows' | 'permissions';
+type Tab = 'dashboard' | 'leads' | 'contacts' | 'workflows' | 'permissions' | 'activity';
 
 const AppContent: React.FC = () => {
   const toast = useToast();
@@ -346,6 +347,7 @@ const AppContent: React.FC = () => {
           <NavBtn active={activeTab === 'contacts'} onClick={() => setActiveTab('contacts')}>Contacts</NavBtn>
           <NavBtn active={activeTab === 'workflows'} onClick={() => setActiveTab('workflows')}>⚡ Workflows</NavBtn>
           <NavBtn active={activeTab === 'permissions'} onClick={() => setActiveTab('permissions')}>🔒 Permissions</NavBtn>
+          <NavBtn active={activeTab === 'activity'} onClick={() => setActiveTab('activity')}>📋 Activity</NavBtn>
           <StatusBadge online={isOnline}>
             {isOnline ? 'Online' : 'Offline'}
           </StatusBadge>
@@ -469,6 +471,7 @@ const AppContent: React.FC = () => {
 
         {activeTab === 'workflows' && <WorkflowManager />}
         {activeTab === 'permissions' && <PermissionsManager />}
+        {activeTab === 'activity' && <ActivityTimeline />}
       </MainContent>
 
       <NotificationShell />
