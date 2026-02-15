@@ -3,7 +3,7 @@
  * For action restrictions and permission explanations
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { PermissionWarning } from '../types/notifications';
 import { notificationTokens } from '../constants/notificationTokens';
@@ -191,7 +191,7 @@ export function useToast() {
         type,
         message,
         title,
-        duration: null, // No auto-dismiss
+        duration: undefined, // No auto-dismiss
       });
     },
   };
@@ -511,7 +511,7 @@ export function useMention() {
 
   return {
     notify: (
-      username: string,
+      _username: string,
       contextType: 'note' | 'comment' | 'email',
       contextUrl: string,
       mentionedBy: string
@@ -542,9 +542,9 @@ export function usePermissionWarning() {
   return {
     show: (
       action: string,
-      userRole: string,
-      requiredRole: string,
-      suggestion?: string
+      _userRole: string,
+      _requiredRole: string,
+      _suggestion?: string
     ) => {
       const warningId = Math.random().toString(36).substr(2, 9);
 
@@ -552,7 +552,7 @@ export function usePermissionWarning() {
       notification.showToast({
         type: 'warning',
         title: 'Action restricted',
-        message: `You need "${requiredRole}" permission to ${action}`,
+        message: `You need higher permissions to ${action}`,
         duration: notificationTokens.timing.toastWarning,
       });
 
